@@ -1,31 +1,54 @@
-# Scholar Agent
+<div align="center">
 
-**Autonomous Research + Report Generation Agent** — a multi-agent cyclic reasoning system built on [LangGraph](https://github.com/langchain-ai/langgraph), served via **FastAPI** and a **Streamlit streaming UI**.
+# 🎓 Scholar Agent
 
-GitHub: https://github.com/pypi-ahmad/scholar-agent.git
+**Autonomous Research + Report Generation Agent**
 
----
+_A multi-agent cyclic reasoning system built on LangGraph, served via FastAPI and a Streamlit streaming UI._
 
-## Table of Contents
-
-- [What it does](#what-it-does)
-- [Requirements](#requirements)
-- [Architecture](#architecture-high-level)
-- [Workflow](#workflow-langgraph-loop)
-- [Quickstart](#quickstart)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Project structure](#project-structure)
-- [Development](#development)
-- [Troubleshooting](#troubleshooting)
-- [Security notes](#security-notes)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
 
 ---
 
-## What it does
+### Built with
+
+[![LangGraph](https://img.shields.io/badge/🦜_LangGraph-1C3C3C?style=flat-square)](https://github.com/langchain-ai/langgraph)
+[![LangChain](https://img.shields.io/badge/🦜_LangChain-1C3C3C?style=flat-square)](https://github.com/langchain-ai/langchain)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Tavily](https://img.shields.io/badge/Tavily_Search-0058CC?style=flat-square)](https://tavily.com)
+[![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io)
+[![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=flat-square&logo=meta&logoColor=white)](https://github.com/facebookresearch/faiss)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6F61?style=flat-square)](https://www.trychroma.com)
+[![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square&logo=pydantic&logoColor=white)](https://pydantic.dev)
+[![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](https://pytest.org)
+
+</div>
+
+---
+
+## 📑 Table of Contents
+
+- [🔍 What it does](#-what-it-does)
+- [📋 Requirements](#-requirements)
+- [🏗️ Architecture](#%EF%B8%8F-architecture-high-level)
+- [🔄 Workflow](#-workflow-langgraph-loop)
+- [🚀 Quickstart](#-quickstart)
+- [💡 Usage](#-usage)
+- [⚙️ Configuration](#%EF%B8%8F-configuration)
+- [📁 Project structure](#-project-structure)
+- [🧪 Development](#-development)
+- [🔧 Troubleshooting](#-troubleshooting)
+- [🔒 Security notes](#-security-notes)
+- [🗺️ Roadmap](#%EF%B8%8F-roadmap)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
+---
+
+## 🔍 What it does
 
 Scholar Agent turns a research question into a structured, cited report by running a multi-step agent workflow:
 
@@ -40,7 +63,7 @@ You can run it via:
 - **FastAPI** (`POST /research`, `GET /research/stream`) for programmatic access — [api/app.py](api/app.py)
 - **Streamlit UI** for live streaming of node execution — [ui/streamlit_app.py](ui/streamlit_app.py)
 
-### Key features
+### ✨ Key features
 
 | Feature                     | Evidence                                                                                 |
 | --------------------------- | ---------------------------------------------------------------------------------------- |
@@ -59,7 +82,7 @@ You can run it via:
 
 ---
 
-## Requirements
+## 📋 Requirements
 
 | Requirement | Details |
 | ----------- | ------- |
@@ -73,7 +96,7 @@ All Python dependencies are listed in [requirements.txt](requirements.txt).
 
 ---
 
-## Architecture (high-level)
+## 🏗️ Architecture (high-level)
 
 ```mermaid
 flowchart LR
@@ -102,7 +125,7 @@ flowchart LR
 
 ---
 
-## Workflow (LangGraph loop)
+## 🔄 Workflow (LangGraph loop)
 
 ```mermaid
 flowchart TD
@@ -116,7 +139,7 @@ flowchart TD
   H --> F
 ```
 
-### Sequence diagram (SSE streaming)
+### 📡 Sequence diagram (SSE streaming)
 
 ```mermaid
 sequenceDiagram
@@ -162,7 +185,7 @@ sequenceDiagram
 
 ---
 
-## Quickstart
+## 🚀 Quickstart
 
 ### 1) Install
 
@@ -222,7 +245,7 @@ streamlit run ui/streamlit_app.py
 
 ---
 
-## Usage
+## 💡 Usage
 
 ### API: Generate a report
 
@@ -270,7 +293,7 @@ The API returns:
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
 ### Environment variables (common)
 
@@ -307,7 +330,7 @@ The API returns:
 
 ---
 
-## Project structure
+## 📁 Project structure
 
 ```text
 .
@@ -347,7 +370,7 @@ The API returns:
 
 ---
 
-## Development
+## 🧪 Development
 
 ### Run tests
 
@@ -377,7 +400,7 @@ ruff check .
 
 ---
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 | Symptom | Cause | Fix |
 | ------- | ----- | --- |
@@ -391,7 +414,7 @@ ruff check .
 
 ---
 
-## Security notes
+## 🔒 Security notes
 
 | Control | Implementation | Reference |
 | ------- | -------------- | --------- |
@@ -408,7 +431,7 @@ ruff check .
 
 ---
 
-## Roadmap
+## 🗺️ Roadmap
 
 - [ ] Docker / docker-compose for one-command deployment
 - [ ] CI pipeline (GitHub Actions) with coverage enforcement (≥80%)
@@ -420,7 +443,7 @@ ruff check .
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please:
 
@@ -431,6 +454,16 @@ Contributions are welcome! Please:
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Ahmad](https://github.com/pypi-ahmad)**
+
+[⬆ Back to top](#-scholar-agent)
+
+</div>
