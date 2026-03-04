@@ -49,7 +49,7 @@ flowchart LR
   UI --> G
 
   G --> P[Planner Node]
-  G --> R[Retriever Node(s)]
+  G --> R["Retriever Node(s)"]
   G --> S[Synthesizer Node]
   G --> C[Critic Node]
   G --> F[Refiner Node]
@@ -89,7 +89,7 @@ sequenceDiagram
     participant A as FastAPI
     participant G as LangGraph
     participant P as Planner
-    participant R as Retriever(s)
+    participant R as Retrievers
     participant S as Synthesizer
     participant Cr as Critic
     participant Re as Refiner
