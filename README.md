@@ -58,7 +58,7 @@ flowchart LR
   R --> VC[Vector Store Tool]
   R --> CA[Cache Tool]
 
-  R --> LLM[LLM (Gemini)]
+  R --> LLM["LLM (Gemini)"]
   P --> LLM
   S --> LLM
   C --> LLM
