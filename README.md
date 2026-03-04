@@ -6,6 +6,25 @@ GitHub: https://github.com/pypi-ahmad/scholar-agent.git
 
 ---
 
+## Table of Contents
+
+- [What it does](#what-it-does)
+- [Requirements](#requirements)
+- [Architecture](#architecture-high-level)
+- [Workflow](#workflow-langgraph-loop)
+- [Quickstart](#quickstart)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Project structure](#project-structure)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+- [Security notes](#security-notes)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## What it does
 
 Scholar Agent turns a research question into a structured, cited report by running a multi-step agent workflow:
@@ -34,7 +53,23 @@ You can run it via:
 | CORS middleware              | Env-driven allow-list — [app.py L72-82](api/app.py#L72-L82)                             |
 | Caps enforcement            | All tuneable via env — [config.py](app/utils/config.py)                                  |
 | Thread-safe graph singleton | Double-checked locking — [builder.py L94-117](app/graph/builder.py#L94-L117)            |
-| 118 hermetic tests          | Pure-stdlib stubs, no external services — [conftest.py](tests/conftest.py)               |
+| Hermetic test suite         | Pure-stdlib stubs, no external services — [conftest.py](tests/conftest.py)               |
+
+> Full evidence matrix with file:line citations → [docs/README_EVIDENCE.md](docs/README_EVIDENCE.md)
+
+---
+
+## Requirements
+
+| Requirement | Details |
+| ----------- | ------- |
+| Python | **3.10+** (developed on 3.13) |
+| OS | Windows, macOS, Linux |
+| Required API key | `GOOGLE_API_KEY` (Gemini LLM) |
+| Optional API key | `TAVILY_API_KEY` (web search — mocked if absent) |
+| Optional services | Redis (cache), FAISS or Chroma (vector store) — all fall back to in-memory |
+
+All Python dependencies are listed in [requirements.txt](requirements.txt).
 
 ---
 
@@ -213,6 +248,14 @@ curl "http://localhost:8000/research/stream?query=Explain+RAG" \
   -H "Accept: text/event-stream"
 ```
 
+With auth enabled (`AUTH_MODE=required`):
+
+```bash
+curl "http://localhost:8000/research/stream?query=Explain+RAG" \
+  -H "Accept: text/event-stream" \
+  -H "X-API-Key: YOUR_API_KEY"
+```
+
 Streams `node`, `final`, and `error` events in real time.
 
 ### Response (typical fields)
@@ -293,9 +336,9 @@ The API returns:
 ├─ ui/
 │  └─ streamlit_app.py      # Streaming UI with SSRF-safe link sanitization
 ├─ tests/
-│  ├─ conftest.py           # Pure-stdlib stub layer (~420 lines)
-│  ├─ unit/                 # 101 unit tests
-│  └─ integration/          # 17 integration tests
+│  ├─ conftest.py           # Pure-stdlib stub layer
+│  ├─ unit/                 # Unit tests
+│  └─ integration/          # Integration tests
 ├─ docs/                    # Architecture, flows, data, ops, upgrade reports
 ├─ .env.example             # All env vars documented
 ├─ requirements.txt         # Dependencies (redis/chromadb commented as optional)
@@ -312,7 +355,7 @@ The API returns:
 python -m pytest tests/unit tests/integration -q
 ```
 
-All 118 tests are **hermetic** — no Redis, Chroma, LLM keys, or external services required. The test suite uses a pure-stdlib stub layer ([conftest.py](tests/conftest.py)) that replaces `pydantic`, `fastapi`, `langchain`, `langgraph`, `streamlit`, and other heavy deps with lightweight fakes.
+All tests are **hermetic** — no Redis, Chroma, LLM keys, or external services required. The test suite uses a pure-stdlib stub layer ([conftest.py](tests/conftest.py)) that replaces `pydantic`, `fastapi`, `langchain`, `langgraph`, `streamlit`, and other heavy deps with lightweight fakes.
 
 | Test module                                                                       | Tests | Covers                                                    |
 | --------------------------------------------------------------------------------- | ----: | --------------------------------------------------------- |
@@ -373,10 +416,21 @@ ruff check .
 - [ ] Persistent, rotating log files
 - [ ] Export reports as PDF / Markdown files
 - [ ] Admin dashboard for monitoring active research sessions
-- [ ] Add a `LICENSE` file (MIT / Apache-2.0)
+- [ ] Add badges (Python version, license, CI status)
+
+---
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repo and create a feature branch
+2. Add or update tests for any new behaviour
+3. Ensure `python -m pytest tests/ -q` passes before opening a PR
+4. Open an issue first for large changes so we can discuss the approach
 
 ---
 
 ## License
 
-Not yet specified — see [Roadmap](#roadmap).
+This project is licensed under the [MIT License](LICENSE).
