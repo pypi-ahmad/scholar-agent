@@ -1,0 +1,70 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+*.egg
+
+# === Virtual environments ===
+.venv/
+venv/
+ENV/
+env/
+.python-version
+
+# === Environment / secrets ===
+.env
+.env.*
+!.env.example
+
+# === Logs ===
+*.log
+logs/
+*.sqlite3
+
+# === Pytest / coverage ===
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+test-results/
+
+# === Typecheck / lint caches ===
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+.cache/
+
+# === IDEs ===
+.vscode/
+.idea/
+*.iml
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Streamlit ===
+.streamlit/secrets.toml
+.streamlit/*.toml
+
+# === Jupyter (if any) ===
+.ipynb_checkpoints/
+
+# === Local data/artifacts (optional but recommended) ===
+data/
+artifacts/
+outputs/
+
+# === Vector store persistence (if you add later) ===
+chroma/
+chromadb/
+*.faiss
+faiss_index/
